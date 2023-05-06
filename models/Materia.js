@@ -11,5 +11,5 @@ export const getAllMat = () => {
 }
 
 export const dbMateria = [
-    new Produto (2, "Viga U", "6''")
+    new Materia (2, "Viga U", "6''")
 ]
