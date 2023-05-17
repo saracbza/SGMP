@@ -6,11 +6,19 @@ export class Produto {
         this.desenho = desenho
     }
 }
+let codAtual = 1
+
+export const create = (produto) => {
+    codAtual++
+    produto.cod = codAtual
+    dbProdutos.push(produto)
+    return produto
+}
 
 export const getAllProd = () => {
     return dbProdutos
 }
 
 export const dbProdutos = [
-    new Produto (32, "Base dobrada 300x520", 2, "UX456058")
+    new Produto (1, "Base dobrada 300x520", 2, "UX456058")
 ]

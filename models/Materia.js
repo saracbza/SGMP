@@ -6,10 +6,19 @@ export class Materia {
     }
 }
 
+let codAtual = 1
+
+export const create = (materia) => {
+    codAtual++
+    materia.cod = codAtual
+    dbMateria.push(materia)
+    return materia
+}
+
 export const getAllMat = () => {
     return dbMateria
 }
 
 export const dbMateria = [
-    new Materia (2, "Viga U", "6''")
+    new Materia (1, "Viga U", "6''")
 ]
