@@ -1,4 +1,4 @@
-import { Materia, getAllMat, create } from "../models/Materia.js"
+import { Materia, getAllMat, create, findByPk, } from "../models/Materia.js"
 
 class MateriaController {
     static list (req,res){
@@ -16,8 +16,16 @@ class MateriaController {
     const createdMateria = create(materia)
     res.status(201).json(createdMateria)
 }
+
+    static getMateriaById(req, res) {
+        const cod = parseInt(req.params.cod)
+        const Materia  = findByPk(cod)
+        if(!Materia) {
+            res.status(404).json({ error: 'Matéria não encontrada' })
+            return
+        }
+        res.json(Materia)
+    }
 }
-
-
 
 export default MateriaController

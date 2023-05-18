@@ -8,6 +8,10 @@ export class Produto {
 }
 let codAtual = 1
 
+export const findByPk = (cod) => {
+    return dbProdutos.find(produto => produto.cod === cod)
+}
+
 export const create = (produto) => {
     codAtual++
     produto.cod = codAtual
