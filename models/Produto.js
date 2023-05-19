@@ -26,3 +26,11 @@ export const getAllProd = () => {
 export const dbProdutos = [
     new Produto (1, "Base dobrada 300x520", 2, "UX456058")
 ]
+export const update = (cod, produto)
+    const produtoToUpdate = findByPk(cod)
+    if(!produtoToUpdate) {
+        return false
+    }
+    const index = dbProdutos.indexOf(produtoToUpdate)
+    dbProdutos[index] = produto
+    return true

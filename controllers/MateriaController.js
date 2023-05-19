@@ -26,6 +26,32 @@ class MateriaController {
         }
         res.json(Materia)
     }
-}
-
-export default MateriaController
+    static updateMateria(req,res){
+        const {cod, desc,dimensoes} = req.body
+        if(!cod || !desc || !dimensoes){
+            res.status(400).json({error: "Informe todos os campos!"})
+            return
+        }
+    
+        const materia = new Materia(2,desc,dimensoes)
+        const createdMateria = create(materia)
+        res.status(201).json(createdMateria)
+    }
+    
+        static gupdateMateria(req, res) {
+            const cod = parseInt(req.params.cod)
+            const Materia  = findByPk(cod)
+            if(!Materia) {
+                res.status(404).json({ error: 'Matéria não encontrada' })
+                return
+            }
+    
+            Materia.cod = cod
+            Materia.desc = desc
+            Materia.dimensoes = dimensoes
+            update(cod, Materia)
+            res.json(Materia)
+    
+        }
+    }
+        export default MateriaController
