@@ -23,14 +23,26 @@ export const getAllMat = () => {
     return dbMateria
 }
 
-export const dbMateria = [
-    new Materia (1, "Viga U", "6''")
-]
-export const update = (cod, materia)
-    const materiaToUpdate = findByPk(cod)
-    if(!materiaToUpdate) {
+export const update = (cod, materiaUpdate) => {
+    const materia = findByPk(cod)
+    if(!materia) {
         return false
     }
-    const index = dbMateria.indexOf(materiaToUpdate)
-    dbMateria[index] = materia
+    const index = dbMateria.indexOf(materia)
+    dbMateria[index] = materiaUpdate
     return true
+}
+
+export const destroy = (cod) => {
+    const materia = findByPk(cod)
+    if (!materia){
+        return false
+    }
+    const index = dbMateria.indexOf(materia)
+    dbMateria.splice (index,1)
+    return true
+}
+
+export const dbMateria = [
+        new Materia (1, "Viga U", "6''")
+    ]
