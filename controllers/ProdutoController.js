@@ -1,4 +1,4 @@
-import { Produto, getAllProd, create, findByPk, } from "../models/Produto.js"
+import { Produto, getAllProd, create, findByPk, update, destroy} from "../models/Produto.js"
 
 class ProdutoController {
     static list (req,res){
