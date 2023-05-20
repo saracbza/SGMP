@@ -5,6 +5,7 @@ const MateriaRouter = express.Router()
 
 MateriaRouter.get('/', MateriaController.list)
 MateriaRouter.post('/', MateriaController.createMateria)
-MateriaRouter.get('/:id', MateriaController.getMateriaById)
-MateriaRouter.put('/:id', MateriaController.updateMateria)
+MateriaRouter.get('/:cod', MateriaController.getMateriaById)
+MateriaRouter.put('/:cod', MateriaController.updateMateria)
+MateriaRouter.delete('/:cod',MateriaController.destroyMateria)
 export default MateriaRouter

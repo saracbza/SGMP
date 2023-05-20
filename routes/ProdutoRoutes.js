@@ -5,6 +5,7 @@ const ProdutoRouter = express.Router()
 
 ProdutoRouter.get('/', ProdutoController.list)
 ProdutoRouter.post('/', ProdutoController.createProduto)
-ProdutoRouter.get('/:id', ProdutoController.getProdutoById)
-ProdutoRouter.put('/:id', ProdutoController.updateProduto)
+ProdutoRouter.get('/:cod', ProdutoController.getProdutoById)
+ProdutoRouter.put('/:cod', ProdutoController.updateProduto)
+ProdutoRouter.delete('/:cod', ProdutoController.destroyProduto)
 export default ProdutoRouter
