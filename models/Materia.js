@@ -1,48 +1,25 @@
-export class Materia {
-    constructor (cod, desc,dimensoes){
-        this.cod = cod
-        this.desc = desc
-        this.dimensoes = dimensoes
+import { Sequelize } from "sequelize"
+import db from "../db.js"
+
+const Materia = db.define('materia', {
+    cod: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primariKey: true
+    },
+    desc: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    dimensoes: {
+        type: Sequelize.FLOAT,
+        allowNull: false
     }
-}
+})
 
-let codAtual = 1
+export default Materia
 
-export const findByPk = (cod) => {
-    return dbMateria.find(materia => materia.cod === cod)
-}
-
-export const create = (materia) => {
-    codAtual++
-    materia.cod = codAtual
-    dbMateria.push(materia)
-    return materia
-}
-
-export const getAllMat = () => {
-    return dbMateria
-}
-
-export const update = (cod, materiaUpdate) => {
-    const materia = findByPk(cod)
-    if(!materia) {
-        return false
-    }
-    const index = dbMateria.indexOf(materia)
-    dbMateria[index] = materiaUpdate
-    return true
-}
-
-export const destroy = (cod) => {
-    const materia = findByPk(cod)
-    if (!materia){
-        return false
-    }
-    const index = dbMateria.indexOf(materia)
-    dbMateria.splice (index,1)
-    return true
-}
-
-export const dbMateria = [
+/*export const dbMateria = [
         new Materia (1, "Viga U", "6''")
-    ]
+    ]*/
