@@ -8,6 +8,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+db.sync()
+
 app.use('/produtos', ProdutoRouter)
 app.use('/materias-prima', MateriaRouter)
 const port = process.env.PORT || 3000
