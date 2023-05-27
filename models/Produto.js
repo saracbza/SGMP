@@ -11,11 +11,7 @@ const Produto = db.define('produto', {
     desc: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    quantidade: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+    },    
     desenho: {
         type: Sequelize.STRING,
         allowNull: false
