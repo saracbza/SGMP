@@ -6,7 +6,7 @@ const Materia = db.define('materia', {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
-        primariKey: true
+        primaryKey: true
     },
     desc: {
         type: Sequelize.STRING,

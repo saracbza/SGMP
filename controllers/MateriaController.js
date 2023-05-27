@@ -1,4 +1,4 @@
-import { Materia, getAllMat, create, findByPk, update, destroy} from "../models/Materia.js"
+import Materia from "../models/Materia.js"
 
 class MateriaController {
     static list (req,res){
