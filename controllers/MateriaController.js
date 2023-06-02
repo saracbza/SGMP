@@ -1,34 +1,35 @@
 import Materia from "../models/Materia.js"
 
 class MateriaController {
-    static list (req,res){
-        res.json(getAllMat())
+    static async list(req,res){
+        const materias = await Materia.findAll()
+        res.json(materias)
     }
 
-    static createMateria(req,res){
+    static async createMateria(req,res){
     const {cod, desc,dimensoes} = req.body
     if(!cod || !desc || !dimensoes){
         res.status(400).json({error: "Informe todos os campos!"})
         return
     }
 
-    const materia = new Materia(2,desc,dimensoes)
-    const createdMateria = create(materia)
+    const createdMateria = await Materia.create({desc,dimensoes})
     res.status(201).json(createdMateria)
 }
 
-    static getMateriaById(req, res) {
+    static async getMateriaById(req, res) {
         const cod = parseInt(req.params.cod)
-        const Materia  = findByPk(cod)
-        if(!Materia) {
+        const materia  = await Materia.findByPk(cod)
+        if(!materia) {
             res.status(404).json({ error: 'Matéria não encontrada' })
             return
         }
-        res.json(Materia)
+        res.json(materia)
     }
-    static updateMateria (req,res){
+
+    static async updateMateria (req,res){
         const cod = parseInt(req.params.cod)
-        const materia = findByPk(cod)
+        const materia = await Materia.findByPk(cod)
         if(!materia){
             res.status(404).json({error:"Não encontrado"})
             return
@@ -40,21 +41,18 @@ class MateriaController {
             return
         }
     
-        materia.desc = desc
-        materia.dimensoes = dimensoes
-    
-        update(cod,materia)
-        res.json(materia)
+        const updatedMateria = await Materia.update({desc, dimensoes},{where: {cod: materia.cod}})
+        res.json(updatedMateria)
     }
         
-    static destroyMateria(req,res){
+    static async destroyMateria(req,res){
         const cod = parseInt(req.params.cod)
-        const materia = findByPk(cod)
+        const materia = await Materia.findByPk(cod)
         if(!materia){
             res.status(404).json({error:"Não encontrado"})
             return
         }
-        destroy(cod)
+        await Materia.destroy({where: {cod: materia.cod}})
         res.json({message: "Removido com sucesso!"})
     }    
 
