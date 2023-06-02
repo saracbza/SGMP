@@ -11,7 +11,7 @@ app.use(express.json())
 db.sync()
 
 app.use('/produtos', ProdutoRouter)
-app.use('/materias-prima', MateriaRouter)
+app.use('/materias-primas', MateriaRouter)
 const port = process.env.PORT || 3000
 
 app.listen(port, () => {console.log(`API rodando na porta ${port}!`)})
