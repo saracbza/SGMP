@@ -1,34 +1,35 @@
 import Produto from "../models/Produto.js"
 
 class ProdutoController {
-    static list (req,res){
-        res.json(getAllProd())
+    static async list(req,res){
+        const produtos = await Produto.findAll()
+        res.json(produtos)
     }
 
-    static createProduto(req,res){
-        const {cod, desc,quant,desenho} = req.body
-        if(!cod || !desc || !quant || !desenho){
+    static async createProduto(req,res){
+        const {desc,quant,desenho} = req.body
+        if(!desc || !quant || !desenho){
             res.status(400).json({error: "Informe todos os campos!"})
             return
         }
-    
-        const produto = new Produto(2,desc,quant,desenho)
-        const createdProduto = create(produto)
+
+        const createdProduto = await Produto.create({desc,quant,desenho})
         res.status(201).json(createdProduto)
     }
 
-    static getProdutoById(req, res) {
+    static async getProdutoById(req,res) {
         const cod = parseInt(req.params.cod)
-        const Produto  = findByPk(cod)
-        if(!Produto) {
+        const produto  = await Produto.findByPk(cod)
+        if(!produto) {
             res.status(404).json({ error: 'Produto não encontrado' })
             return
         }
-        res.json(Produto)
+        res.json(produto)
     }
-    static updateProduto (req,res){
+
+    static async updateProduto (req,res){
         const cod = parseInt(req.params.cod)
-        const produto = findByPk(cod)
+        const produto = await Produto.findByPk(cod)
         if(!produto){
             res.status(404).json({error:"Não encontrado"})
             return
@@ -40,25 +41,19 @@ class ProdutoController {
             return
         }
     
-        produto.desc = desc
-        produto.quant = quant
-        produto.desenho = desenho
-    
-        update(cod,produto)
-        res.json(produto)
+        const updatedProduto = await Produto.update({desc, quant,desenho},{where: {cod: produto.cod}})
+        res.json(updatedProduto)
     }
         
-    static destroyProduto(req,res){
+    static async destroyProduto(req,res){
         const cod = parseInt(req.params.cod)
-        const produto = findByPk(cod)
+        const produto = await Produto.findByPk(cod)
         if(!produto){
             res.status(404).json({error:"Não encontrado"})
             return
         }
-        destroy(cod)
+        await Produto.destroy({where: {cod: produto.cod}})
         res.json({message: "Removido com sucesso!"})
     }    
-
-
 }
 export default ProdutoController
