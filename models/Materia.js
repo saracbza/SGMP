@@ -13,7 +13,7 @@ const Materia = db.define('materia', {
         allowNull: false
     },
     dimensoes: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false
     }
 })
