@@ -13,7 +13,7 @@ class ProdutoController {
             return
         }
 
-        const createdProduto = await Produto.create({desc,quant,desenho})
+        const createdProduto = await Produto.create({desc,desenho})
         res.status(201).json(createdProduto)
     }
 
