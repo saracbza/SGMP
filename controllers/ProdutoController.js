@@ -7,8 +7,8 @@ class ProdutoController {
     }
 
     static async createProduto(req,res){
-        const {desc,quant,desenho} = req.body
-        if(!desc || !quant || !desenho){
+        const {desc,desenho} = req.body
+        if(!desc || !desenho){
             res.status(400).json({error: "Informe todos os campos!"})
             return
         }
@@ -35,13 +35,13 @@ class ProdutoController {
             return
         }
     
-        const {desc, quant,desenho} = req.body
-        if(!desc || !quant || !desenho){
+        const {desc,desenho} = req.body
+        if(!desc || !desenho){
             res.status(400).json({error: "Informe todos os campos!"})
             return
         }
     
-        const updatedProduto = await Produto.update({desc, quant,desenho},{where: {cod: produto.cod}})
+        const updatedProduto = await Produto.update({desc,desenho},{where: {cod: produto.cod}})
         res.json(updatedProduto)
     }
         
