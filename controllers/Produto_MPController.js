@@ -11,8 +11,7 @@ import { Materia, Produto, Produto_materiaPrima } from "../models/index.js"
         }
     static async show(req, res) {
         try {
-            const produto = await Produto.findByPk(req.body.cod)
-            const prod_MP = await Produto_materiaPrima.findByPk(req.body.cod, { include: 'materias' }, {where: {codProd: produto.cod}})
+            const prod_MP = await Produto_materiaPrima.findByPk(req.body.cod, { include: 'materias' })
             return res.json(prod_MP)
         } catch (err) {
             return res.status(500).json({ error: err.message })
