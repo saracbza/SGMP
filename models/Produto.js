@@ -19,7 +19,3 @@ const Produto = db.define('produto', {
 })
 
 export default Produto
-
-/*export const dbProdutos = [
-    new Produto (1, "Base dobrada 300x520", 2, "UX456058")
-]*/

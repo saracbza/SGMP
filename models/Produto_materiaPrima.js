@@ -1,21 +1,16 @@
 import { Sequelize } from "sequelize"
 import db from "../db.js"
+import Produto from "./Produto.js"
+import Materia from "./Materia.js"
 
 const Produto_materiaPrima = db.define('produto_materiaPrima', {
-    id: {
+    cod: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },    
-    codProd: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-    },
-    codMateria: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+
     quantidade: {
         type: Sequelize.INTEGER,
         allowNull: false

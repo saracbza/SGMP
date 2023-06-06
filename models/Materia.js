@@ -19,7 +19,3 @@ const Materia = db.define('materia', {
 })
 
 export default Materia
-
-/*export const dbMateria = [
-        new Materia (1, "Viga U", "6''")
-    ]*/
