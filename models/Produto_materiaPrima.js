@@ -17,4 +17,7 @@ const Produto_materiaPrima = db.define('produto_materiaPrima', {
     }
 })
 
+Materia.belongsToMany(Produto, { through: Produto_materiaPrima})
+Produto.belongsToMany(Materia, { through: Produto_materiaPrima})
+
 export default Produto_materiaPrima
